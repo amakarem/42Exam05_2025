@@ -11,13 +11,13 @@ void free_all(char **map, int **dp, int rows)
 {
     if (map)
     {
-        for (int i =0; i < rows; i++)
+        for (int i = 0; i < rows; i++)
             free(map[i]);
         free(map);
     }
     if (dp)
     {
-        for (int i =0; i < rows; i++)
+        for (int i = 0; i < rows; i++)
             free(dp[i]);
         free(dp);
     }
@@ -53,7 +53,7 @@ int bsq(FILE *f)
         return err_msg();
     if (rows <= 0 || empty == obstacle || empty == full || obstacle == full)
         return err_msg();
-    map = malloc(rows * sizeof(char*));
+    map = calloc(rows, sizeof(char *));
     if (!map)
         return err_msg();
     for (int i = 0; i < rows; i++)
@@ -66,14 +66,15 @@ int bsq(FILE *f)
         {
             map[i][read - 1] = '\0';
             read--;
-        } else
+        }
+        else
             return ext_err(map, dp, rows);
         if (i == 0)
             cols = read;
         else if (cols != read)
             return ext_err(map, dp, rows);
     }
-    dp = malloc(rows * sizeof(int*));
+    dp = calloc(rows, sizeof(int *));
     if (!dp)
         return ext_err(map, dp, rows);
     for (int y = 0; y < rows; y++)
@@ -102,7 +103,7 @@ int bsq(FILE *f)
     }
     for (int y = best_y - best_size + 1; y <= best_y; y++)
     {
-        for(int x = best_x - best_size + 1; x <= best_x; x++)
+        for (int x = best_x - best_size + 1; x <= best_x; x++)
             map[y][x] = full;
     }
     for (int y = 0; y < rows; y++)
