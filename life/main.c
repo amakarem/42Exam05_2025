@@ -48,7 +48,6 @@ void print(int *board, int width, int height)
         putchar('\n');
         y++;
     }
-    
 }
 
 int main(int argc, char **argv)
@@ -58,7 +57,7 @@ int main(int argc, char **argv)
     int iterations;
     int x = 0;
     int y = 0;
-    int pen;
+    int pen = 0;
     int n;
     int *board;
     int *newboard;
@@ -69,7 +68,7 @@ int main(int argc, char **argv)
     width = atoi(argv[1]);
     height = atoi(argv[2]);
     iterations = atoi(argv[3]);
-    if (width <= 0 || height <=0 || iterations < 0)
+    if (width <= 0 || height <= 0 || iterations < 0)
         return (1);
     board = calloc(width * height, sizeof(int));
     if (!board)
@@ -112,7 +111,6 @@ int main(int argc, char **argv)
         free(board);
         board = newboard;
     }
-    
     print(board, width, height);
     free(board);
     return (0);
