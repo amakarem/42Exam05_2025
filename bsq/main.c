@@ -107,13 +107,15 @@ int bsq(FILE *f)
             map[y][x] = full;
     }
     for (int y = 0; y < rows; y++)
-    {
-        for (int x = 0; x < cols; x++)
-            putchar(map[y][x]);
-        putchar('\n');
-    }
+        fprintf(stdout, "%s \n", map[y]);
     free_all(map, dp, rows);
     return (0);
+}
+
+void next_map(int argc, int i)
+{
+    if (i < argc - 1)
+        fprintf(stdout, "\n");
 }
 
 int main(int argc, char **argv)
@@ -128,15 +130,15 @@ int main(int argc, char **argv)
             if (!f)
             {
                 err_msg();
+                next_map(argc, i);
                 continue;
             }
             r = bsq(f);
             fclose(f);
-            if (i < argc - 1)
-                putchar('\n');
+            next_map(argc, i);
         }
     }
     else
         r = bsq(stdin);
-    return r;
+    return (r);
 }
