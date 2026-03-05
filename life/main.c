@@ -27,7 +27,7 @@ int count_n(int *board, int width, int height, int x, int y)
         }
         dy++;
     }
-    return n;
+    return (n);
 }
 
 void print(int *board, int width, int height)
@@ -92,7 +92,10 @@ int main(int argc, char **argv)
     {
         newboard = calloc(width * height, sizeof(int));
         if (!newboard)
+        {
+            free(board);
             return (1);
+        }
         y = 0;
         while (y < height)
         {
