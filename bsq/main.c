@@ -107,7 +107,7 @@ int bsq(FILE *f)
             map[y][x] = full;
     }
     for (int y = 0; y < rows; y++)
-        fprintf(stdout, "%s \n", map[y]);
+        fprintf(stdout, "%s\n", map[y]);
     free_all(map, dp, rows);
     return (0);
 }
@@ -129,7 +129,7 @@ int main(int argc, char **argv)
             f = fopen(argv[i], "r");
             if (!f)
             {
-                err_msg();
+                r = err_msg();
                 next_map(argc, i);
                 continue;
             }
